@@ -1,7 +1,11 @@
 package com.wecp.progressive.entity;
 
-public class Match {
+import javax.persistence.*;
 
+@Entity
+public class Match {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int match_Id;
     int first_team_d;
     int second_team_Id;

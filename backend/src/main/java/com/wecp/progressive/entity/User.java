@@ -1,6 +1,11 @@
 package com.wecp.progressive.entity;
 
+import javax.persistence.*;
+
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int user_id;
     private String full_name;
     private String username;

@@ -1,50 +1,72 @@
 package com.wecp.progressive.entity;
 
-public class Team {
-    int team_id;
-    String team_name;
+import javax.persistence.*;
+
+// public class Team {
+@Entity
+public class Team implements Comparable<Team> {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int teamId;
+    String teamName;
     String location;
-    String owner_name;
-    int establishment_year;
-    public Team(int team_id, String team_name, String location, String owner_name, int establishment_year) {
-        this.team_id = team_id;
-        this.team_name = team_name;
+    String ownerName;
+    int establishmentYear;    
+
+    public Team (){}
+
+    public Team(int teamId, String teamName, String location, String ownerName, int establishmentYear) {
+        this.teamId = teamId;
+        this.teamName = teamName;
         this.location = location;
-        this.owner_name = owner_name;
-        this.establishment_year = establishment_year;
+        this.ownerName = ownerName;
+        this.establishmentYear = establishmentYear;
+    }    
+
+    public int getTeamId() {
+        return teamId;
     }
-    public int getTeam_id() {
-        return team_id;
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
-    public void setTeam_id(int team_id) {
-        this.team_id = team_id;
+
+    public String getTeamName() {
+        return teamName;
     }
-    public String getTeam_name() {
-        return team_name;
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
-    public void setTeam_name(String team_name) {
-        this.team_name = team_name;
-    }
+
     public String getLocation() {
         return location;
     }
+
     public void setLocation(String location) {
         this.location = location;
     }
-    public String getOwner_name() {
-        return owner_name;
+
+    public String getOwnerName() {
+        return ownerName;
     }
-    public void setOwner_name(String owner_name) {
-        this.owner_name = owner_name;
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
-    public int getEstablishment_year() {
-        return establishment_year;
+
+    public int getEstablishmentYear() {
+        return establishmentYear;
     }
-    public void setEstablishment_year(int establishment_year) {
-        this.establishment_year = establishment_year;
+
+    public void setEstablishmentYear(int establishmentYear) {
+        this.establishmentYear = establishmentYear;
     }
-   
-    
+
+    @Override
+    public int compareTo(Team that){
+        return this.teamName.compareTo(that.teamName);
+    }
     
 
 }
