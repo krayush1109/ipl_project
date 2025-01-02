@@ -1,12 +1,6 @@
 package com.wecp.progressive.entity;
 
-import javax.annotation.Generated;
-import javax.persistence.*;
-
-@Entity
-public class Cricketer implements Comparable<Cricketer> {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Cricketer {
     int cricketerId;
     int teamId;
     String cricketerName;
@@ -16,7 +10,6 @@ public class Cricketer implements Comparable<Cricketer> {
     String role;
     int totalRuns;
     int totalWickets;
-
     public Cricketer(int cricketerId, int teamId, String cricketerName, int age, String nationality, int experience,
             String role, int totalRuns, int totalWickets) {
         this.cricketerId = cricketerId;
@@ -83,10 +76,5 @@ public class Cricketer implements Comparable<Cricketer> {
     public void setTotalWickets(int totalWickets) {
         this.totalWickets = totalWickets;
     }
-     
-    @Override
-    public int compareTo(Cricketer that){
-        return Integer.compare(this.experience, that.experience);
-    }
-
+        
 }
