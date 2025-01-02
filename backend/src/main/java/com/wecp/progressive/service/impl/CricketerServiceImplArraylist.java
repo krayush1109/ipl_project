@@ -1,30 +1,36 @@
 package com.wecp.progressive.service.impl;
-
+ 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-
+ 
 import com.wecp.progressive.entity.Cricketer;
 import com.wecp.progressive.service.CricketerService;
-
+ 
 public class CricketerServiceImplArraylist implements CricketerService {
-
-    private List<Cricketer> cricketers = new ArrayList<>();
-
+private static List<Cricketer> cricketersList =new ArrayList<>();
     @Override
     public List<Cricketer> getAllCricketers() {
-        return cricketers;
-    }
-
+       return cricketersList; }
+ 
     @Override
     public Integer addCricketer(Cricketer cricketer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addCricketer'");
+    cricketersList.add(cricketer);
+    return cricketersList.size();
     }
-
+ 
     @Override
     public List<Cricketer> getAllCricketersSortedByExperience() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllCricketersSortedByExperience'");
+        List<Cricketer> sortedCricketer = cricketersList;
+        sortedCricketer.sort(Comparator.comparing(Cricketer::getExperience));
+        return  sortedCricketer;
     }
-
+ 
+    @Override
+    public void emptyArrayList(){
+        cricketersList = new ArrayList<>();
+    }
+ 
+   
+ 
 }

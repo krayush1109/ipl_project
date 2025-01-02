@@ -1,40 +1,43 @@
 package com.wecp.progressive.service.impl;
 
-import java.util.List;
-
+import com.wecp.progressive.dao.MatchDAO;
 import com.wecp.progressive.entity.Match;
 import com.wecp.progressive.service.MatchService;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public class MatchServiceImplJdbc implements MatchService {
 
-    @Override
-    public List<Match> getAllMatches() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllMatches'");
+    private MatchDAO matchDAO;
+
+    public MatchServiceImplJdbc(MatchDAO matchDAO) {
+        this.matchDAO = matchDAO;
     }
 
     @Override
-    public Match getMatchById(int matchId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMatchById'");
+    public List<Match> getAllMatches() throws SQLException {
+        return matchDAO.getAllMatches();
     }
 
     @Override
-    public Integer addMatch(Match match) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addMatch'");
+    public Match getMatchById(int matchId) throws SQLException {
+        return matchDAO.getMatchById(matchId);
     }
 
     @Override
-    public void updateMatch(Match match) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateMatch'");
+    public Integer addMatch(Match match) throws SQLException {
+        return matchDAO.addMatch(match);
     }
 
     @Override
-    public void deleteMatch(int matchId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteMatch'");
+    public void updateMatch(Match match) throws SQLException {
+        matchDAO.updateMatch(match);
+    }
+
+    @Override
+    public void deleteMatch(int matchId) throws SQLException {
+        matchDAO.deleteMatch(matchId);
     }
 
 }

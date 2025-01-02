@@ -1,31 +1,34 @@
 package com.wecp.progressive.entity;
+ 
 
 public class User {
-    private int user_id;
-    private String full_name;
+    private int userId;
+    private String fullName;
     private String username;
     private String password;
     private String email;
     private String role;
-    public User(int user_id, String full_name, String username, String password, String email, String role) {
-        this.user_id = user_id;
-        this.full_name = full_name;
+    public User() {
+    }
+    public User(int userId, String fullName, String username, String password, String email, String role) {
+        this.userId = userId;
+        this.fullName = fullName;
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
     }
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
-    public String getFull_name() {
-        return full_name;
+    public String getFullName() {
+        return fullName;
     }
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
     public String getUsername() {
         return username;
@@ -51,9 +54,5 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-
-    // public User(){}
-
     
-
 }
