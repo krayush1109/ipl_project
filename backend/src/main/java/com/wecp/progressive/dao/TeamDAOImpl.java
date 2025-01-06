@@ -1,5 +1,3 @@
-
-
 package com.wecp.progressive.dao;
 
 
@@ -169,7 +167,3 @@ public class TeamDAOImpl implements TeamDAO {
     }
 
 }
-
-
-
-
