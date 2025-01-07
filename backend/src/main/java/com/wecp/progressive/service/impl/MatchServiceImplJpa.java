@@ -11,7 +11,6 @@ import java.util.List;
 
 @Service
 public class MatchServiceImplJpa implements MatchService {
-
     private MatchRepository matchRepository;
 
     @Autowired

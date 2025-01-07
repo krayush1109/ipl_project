@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/match")
 public class MatchController {
-
     @Autowired
     MatchServiceImplJpa matchServiceImplJpa;
 
