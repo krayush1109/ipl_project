@@ -38,6 +38,10 @@ public class TeamServiceImplJpa  implements TeamService {
 
     @Override
     public int addTeam(Team team) throws SQLException {
+        if(teamRepository.findByTeamName(team.getTeamName()) != null ){
+            throw new TeamAlreadyExistsException("Team with the name " + team.getTeamName() + " already exists." );
+        }
+
         return teamRepository.save(team).getTeamId();
     }
 
@@ -49,12 +53,19 @@ public class TeamServiceImplJpa  implements TeamService {
     }
 
     @Override
-    public Team getTeamById(int teamId) throws SQLException {
-        return teamRepository.findByTeamId(teamId);
+    public Team getTeamById(int teamId) throws SQLException {        
+        // return teamRepository.findByTeamId(teamId);        
+
+        return teamRepository.findByTeamId(teamId).orElseThrow(() -> new TeamDoesNotExistException("Team with ID "+ teamId + " does not exist.") );
     }
 
     @Override
     public void updateTeam(Team team) throws SQLException {
+        Team existingTeam = teamRepository.findByTeamName(team.getTeamName());
+        if(existingTeam != null && existingTeam.getTeamId() != team.getTeamId() ){
+            throw new TeamAlreadyExistsException("Another team with the name " + team.getTeamName() + " already exists.");
+        }
+
         teamRepository.save(team);
     }
 
