@@ -12,6 +12,7 @@ import java.util.List;
 
 @Service
 public class MatchServiceImplJpa implements MatchService {
+
     private MatchRepository matchRepository;
 
     @Autowired
@@ -46,12 +47,11 @@ public class MatchServiceImplJpa implements MatchService {
 
     @Override
     public List<Match> getAllMatchesByStatus(String status) throws SQLException {
-        List<Match> matchList = matchRepository.findAllByStatus(status);
-
-        if(matchList.isEmpty()){
-            throw new NoMatchesFoundException("No matches found with status: " + status);
+        if(matchRepository.findAll().isEmpty())
+        {
+            throw new NoMatchesFoundException("no match found");
         }
-
+        List<Match> matchList = matchRepository.findAllByStatus(status);
         return matchList;
     }
 }

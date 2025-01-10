@@ -1,7 +1,6 @@
 package com.wecp.progressive.controller;
 
 import com.wecp.progressive.entity.TicketBooking;
-import com.wecp.progressive.service.TicketBookingService;
 import com.wecp.progressive.service.impl.TicketBookingServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,34 +24,23 @@ public class TicketBookingController {
     private TicketBookingServiceImpl ticketBookingServiceImpl;
 
     @GetMapping
-    public ResponseEntity<List<TicketBooking>> getAllBookings() {        
-        List<TicketBooking> result = ticketBookingServiceImpl.getAllTicketBookings();
-        return new ResponseEntity<>(result, HttpStatus.OK) ;
-        // return null;
+    public ResponseEntity<List<TicketBooking>> getAllBookings() {
+        return new ResponseEntity<>(ticketBookingServiceImpl.getAllTicketBookings(), HttpStatus.OK);
     }
-    
+
     @PostMapping
     public ResponseEntity<Integer> createBooking(@RequestBody TicketBooking ticketBooking) {
-        
-        int result = ticketBookingServiceImpl.createBooking(ticketBooking);
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
-        
-        // return null;
+        return new ResponseEntity<>(ticketBookingServiceImpl.createBooking(ticketBooking),HttpStatus.CREATED);
     }
-    
-    @DeleteMapping("/{bookingID}")
+
+    @DeleteMapping("/{bookingId}")
     public ResponseEntity<Void> cancelBooking(@PathVariable int bookingId) {
         ticketBookingServiceImpl.cancelBooking(bookingId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        // return null;
     }
-    
+
     @GetMapping("/user/{email}")
     public ResponseEntity<List<TicketBooking>> getBookingsByUserEmail(@PathVariable String email) {
-        
-        List<TicketBooking> result = ticketBookingServiceImpl.getBookingsByUserEmail(email);
-        return new ResponseEntity<>(result, HttpStatus.OK);
-        
-        // return null;
+        return new ResponseEntity<>(ticketBookingServiceImpl.getBookingsByUserEmail(email),HttpStatus.OK);
     }
 }

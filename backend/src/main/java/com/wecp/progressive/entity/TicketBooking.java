@@ -13,19 +13,22 @@ public class TicketBooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookingId;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Match match;
+
     private String email;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Match match;
     private int numberOfTickets;
 
-    public TicketBooking(){}
-
-    public TicketBooking(int bookingId, String email, Match match, int numberOfTickets) {
+    public TicketBooking(int bookingId, Match match, String email, int numberOfTickets) {
         this.bookingId = bookingId;
-        this.email = email;
         this.match = match;
+        this.email = email;
         this.numberOfTickets = numberOfTickets;
+    }
+
+    public TicketBooking() {
     }
 
     public int getBookingId() {
@@ -36,20 +39,20 @@ public class TicketBooking {
         this.bookingId = bookingId;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Match getMatch() {
         return match;
     }
 
     public void setMatch(Match match) {
         this.match = match;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getNumberOfTickets() {
