@@ -1,4 +1,3 @@
-
 package com.wecp.progressive.service.impl;
 
 import com.wecp.progressive.dao.TeamDAO;
@@ -51,4 +50,3 @@ public class TeamServiceImplJdbc implements TeamService {
         teamDAO.deleteTeam(teamId);
     }
 }
-
