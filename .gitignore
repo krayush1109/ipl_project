@@ -10,5 +10,5 @@ backend-tests.log
 frontend-tests.log
 
 
-.solutionfiles/solution.jsc
-.systemfiles/solution.jsc
+# .solutionfiles/solution.jsc
+# .systemfiles/solution.jsc
