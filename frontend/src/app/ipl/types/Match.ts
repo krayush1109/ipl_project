@@ -1,35 +1,39 @@
+import { Team } from './Team';
 
-// src/app/ipl/types/Match.ts
 export class Match {
     matchId: number;
-    firstTeamId: number;
-    secondTeamId: number;
+    firstTeam: Team; // ManyToOne relationship with Team
+    secondTeam: Team; // ManyToOne relationship with Team
     matchDate: Date;
     venue: string;
     result: string;
     status: string;
-    winnerTeamId: number;
-  
+    winnerTeam: Team; // ManyToOne relationship with Team
+
     constructor(
-      matchId: number, firstTeamId: number, secondTeamId: number, matchDate: Date,
-      venue: string, result: string, status: string, winnerTeamId: number
+        matchId: number,
+        firstTeam: Team,
+        secondTeam: Team,
+        matchDate: Date,
+        venue: string,
+        result: string,
+        status: string,
+        winnerTeam: Team
     ) {
-      this.matchId = matchId;
-      this.firstTeamId = firstTeamId;
-      this.secondTeamId = secondTeamId;
-      this.matchDate = matchDate;
-      this.venue = venue;
-      this.result = result;
-      this.status = status;
-      this.winnerTeamId = winnerTeamId;
+        this.matchId = matchId;
+        this.firstTeam = firstTeam;
+        this.secondTeam = secondTeam;
+        this.matchDate = matchDate;
+        this.venue = venue;
+        this.result = result;
+        this.status = status;
+        this.winnerTeam = winnerTeam;
     }
-  
-    displayInfo(): void {
-      console.log(`Match ID: ${this.matchId}, Match Date: ${this.matchDate.toDateString()}, Venue: ${this.venue}`);
+
+    displayInfo() {
+        console.log(`Match ID: ${this.matchId}`);
+        console.log(`First Team: ${this.firstTeam.teamName}`);
+        console.log(`Second Team: ${this.secondTeam.teamName}`);
+        console.log(`Winner: ${this.winnerTeam.teamName}`);
     }
-  }
-  
-  // Example usage:
-  const match = new Match(1, 1, 2, new Date('2025-04-15'), 'Wankhede Stadium', 'Mumbai Indians won by 6 wickets', 'Completed', 1);
-  match.displayInfo();
-  
+}
