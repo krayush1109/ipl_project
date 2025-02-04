@@ -41,3 +41,4 @@ export class TicketBookingComponent implements OnInit {
     this.ticketBookingForm.reset();
   }
 }
+
