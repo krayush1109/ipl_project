@@ -12,9 +12,9 @@ import { HttpErrorResponse } from "@angular/common/http";
 
 export class TeamCreateComponent implements OnInit {
 
-  teamForm !: FormGroup<any>;
-  successMessage: string | null;
-  errorMessage: string | null;
+  teamForm !: FormGroup;
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
   currentYear : number = new Date().getFullYear();
   team : Team | null = null;
 
@@ -29,30 +29,7 @@ export class TeamCreateComponent implements OnInit {
       establishmentYear: [null, [Validators.required, Validators.min(1900) , Validators.max(this.currentYear)]]
     });
   }
-
-  onSubmit(): void {
-    this.addTeam();
-  }
-
-  private addTeam() : void {
-    if(this.teamForm.valid) {
-      this.iplService.addTeam(this.teamForm.value).subscribe({
-        next : (response:Team) =>{
-          this.team = response;
-          this.successMessage = 'Team created successfully!';
-          this.errorMessage = null;
-          this.teamForm.reset;
-        },
-        error : () => {
-          this.errorMessage = 'Please fill out all required fields correctly.';
-          this.successMessage = null;
-        }
-      })
-  }
-}
-
-
-
+  
   resetForm(): void {
     this.teamForm.reset({
       teamId: null,
@@ -62,7 +39,18 @@ export class TeamCreateComponent implements OnInit {
       establishmentYear: this.currentYear
     });
   }
-
+  onSubmit(): void {
+    if (this.teamForm.valid) {
+      // this.successMessage = 'Team created successfull!';
+      // this.errorMessage = null;
+      // console.log('Team Created: ', this.teamForm.value);
+      this.addTeam();
+    } else {
+      this.errorMessage = 'Please fill out all required fields correctly.';
+      this.successMessage = null;
+    }
+  }
+  
   private handleError(error : HttpErrorResponse) : void {
     if(error.error instanceof ErrorEvent) {
       this.errorMessage = `Client-side error: ${error.error.message}`;
@@ -78,4 +66,22 @@ export class TeamCreateComponent implements OnInit {
     console.error('An error occurred:' , this.errorMessage);
 
   }
-}
+
+  addTeam() : void {
+    this.iplService.addTeam(this.teamForm.value).subscribe({
+      next : (response:Team)=>{
+      this.team = response;
+      this.successMessage = 'Team created successfully!';
+      this.errorMessage = null;
+      this.teamForm.reset();
+    },
+      error : (error : HttpErrorResponse) => {
+        this.handleError(error);
+      }})
+    }
+  }
+
+
+
+
+
